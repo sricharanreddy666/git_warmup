@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Small but Decent</title>
+  <meta name="description" content="A small but decent single‑file HTML starter." />
+  <style>
+    :root{
+      --bg: #0f172a;         /* slate-900 */
+      --panel: #111827;      /* gray-900 */
+      --muted: #94a3b8;      /* slate-400 */
+      --text: #e5e7eb;       /* gray-200 */
+      --accent: #22d3ee;     /* cyan-400 */
+      --accent-strong: #06b6d4; /* cyan-500 */
+      --ring: #7dd3fc;       /* sky-300 */
+    }
+    .light{
+      --bg: #f8fafc;         /* slate-50 */
+      --panel: #ffffff;       /* white */
+      --muted: #475569;       /* slate-600 */
+      --text: #0f172a;        /* slate-900 */
+      --accent: #0ea5e9;      /* sky-500 */
+      --accent-strong: #0284c7; /* sky-600 */
+      --ring: #38bdf8;        /* sky-400 */
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+      background:var(--bg); color:var(--text);
+      display:flex; flex-direction:column;
+    }
+    .container{ width:min(1100px, 90%); margin-inline:auto; }
+
+    /* Header */
+    header{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.2) blur(8px); background:color-mix(in hsl, var(--bg) 85%, transparent); border-bottom:1px solid color-mix(in hsl, var(--text) 10%, transparent); }
+    .nav{ display:flex; align-items:center; justify-content:space-between; padding:0.8rem 0; }
+    .brand{ display:flex; gap:.6rem; align-items:center; font-weight:700; letter-spacing:.2px; }
+    .brand .logo{ width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg, var(--accent), var(--accent-strong)); box-shadow:0 6px 20px color-mix(in hsl, var(--accent) 30%, transparent); }
+    nav ul{ list-style:none; display:flex; gap:1rem; padding:0; margin:0; }
+    nav a{ text-decoration:none; color:var(--text); opacity:.85 }
+    nav a:hover{ opacity:1 }
+    .actions{ display:flex; gap:.6rem }
+    .btn{ appearance:none; border:1px solid color-mix(in hsl, var(--text) 16%, transparent); background:var(--panel); color:var(--text); padding:.5rem .8rem; border-radius:12px; cursor:pointer; transition:.18s transform ease,.18s box-shadow ease; }
+    .btn:hover{ transform:translateY(-1px); box-shadow:0 8px 24px -12px color-mix(in hsl, var(--ring) 40%, transparent) }
+
+    /* Hero */
+    .hero{ padding:3.5rem 0 2rem; text-align:center; }
+    .eyebrow{ color:var(--muted); font-size:.9rem; letter-spacing:.12em; text-transform:uppercase; }
+    h1{ font-size: clamp(1.8rem, 4vw + 1rem, 3rem); line-height:1.15; margin:.4rem 0 .8rem; }
+    .lead{ color:var(--muted); max-width:60ch; margin:0 auto 1.2rem; }
+    .cta{ display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; margin-top:.8rem }
+    .btn.primary{ background:linear-gradient(135deg, var(--accent), var(--accent-strong)); border:none; color:#001018; font-weight:700 }
+    .btn.ghost{ background:transparent }
+
+    /* Cards */
+    .grid{ display:grid; grid-template-columns:repeat(12, 1fr); gap:1rem; margin:2rem 0 3rem }
+    .card{ grid-column: span 12; background:var(--panel); border:1px solid color-mix(in hsl, var(--text) 12%, transparent); border-radius:14px; padding:1rem; display:flex; gap:1rem; align-items:flex-start }
+    .card .icon{ width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, var(--accent), var(--accent-strong)); flex:0 0 auto }
+    .card h3{ margin:.1rem 0 .2rem; font-size:1.05rem }
+    .card p{ margin:.1rem 0 0; color:var(--muted) }
+    @media (min-width:720px){ .card{ grid-column: span 4 } }
+
+    /* Footer */
+    footer{ margin-top:auto; border-top:1px solid color-mix(in hsl, var(--text) 10%, transparent); }
+    footer .foot{ display:flex; justify-content:space-between; align-items:center; padding:1rem 0; color:var(--muted) }
+
+    /* Utilities */
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Small but Decent</span>
+      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="actions">
+        <button class="btn" id="themeToggle" aria-pressed="false" aria-label="Toggle theme">🌗</button>
+        <a class="btn primary" href="#contact">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="about">
+      <div class="container">
+        <p class="eyebrow">Starter template</p>
+        <h1>A clean little HTML page to kick off small projects.</h1>
+        <p class="lead">No build tools, no frameworks—just semantic HTML, a sprinkle of CSS, and a tiny bit of JavaScript for theme toggling. Copy, tweak, ship.</p>
+        <div class="cta">
+          <a class="btn primary" href="#features">See Features</a>
+          <a class="btn ghost" href="#contact">Say Hello</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="features">
+      <div class="grid">
+        <article class="card">
+          <div class="icon" aria-hidden="true"></div>
+          <div>
+            <h3>Responsive out of the box</h3>
+            <p>Uses a simple grid that adapts nicely from mobile to desktop with one media query.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true"></div>
+          <div>
+            <h3>Accessible by default</h3>
+            <p>Semantic tags, labeled controls, and good contrast help everyone use it comfortably.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true"></div>
+          <div>
+            <h3>Tiny but extensible</h3>
+            <p>About a hundred lines of CSS. Delete what you don't need, keep what you do.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title" class="sr-only">Contact</h2>
+      <form class="card" onsubmit="event.preventDefault(); alert('Submitted! 🎉');">
+        <div class="icon" aria-hidden="true"></div>
+        <div style="width:100%">
+          <div style="display:grid; gap:.6rem; grid-template-columns:1fr; margin-bottom:.6rem">
+            <label>
+              <span class="sr-only">Your email</span>
+              <input type="email" name="email" placeholder="you@example.com" required
+                     style="width:100%; padding:.7rem .8rem; border-radius:10px; border:1px solid color-mix(in hsl, var(--text) 15%, transparent); background:var(--panel); color:var(--text)" />
+            </label>
+            <label>
+              <span class="sr-only">Message</span>
+              <textarea name="message" rows="3" placeholder="Write a short message…" required
+                        style="width:100%; padding:.7rem .8rem; border-radius:10px; border:1px solid color-mix(in hsl, var(--text) 15%, transparent); background:var(--panel); color:var(--text)"></textarea>
+            </label>
+          </div>
+          <button class="btn primary" type="submit">Send</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <small>© <span id="year"></span> Small but Decent</small>
+      <small><a href="#top" style="color:inherit; opacity:.8; text-decoration:none">Back to top ↑</a></small>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle with localStorage
+    const root = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('theme');
+    if(saved === 'light') root.classList.add('light');
+    btn.setAttribute('aria-pressed', root.classList.contains('light'));
+    btn.addEventListener('click', () => {
+      root.classList.toggle('light');
+      const isLight = root.classList.contains('light');
+      btn.setAttribute('aria-pressed', isLight);
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+  </script>
+</body>
+</html>
